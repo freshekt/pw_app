@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'presentation/login/login.dart';
+import 'config/di-module.dart';
 
 void main() {
+  configureDependencies();
   runApp(MyApp());
 }
 

@@ -1,31 +1,17 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:pwapp/config/di-module.dart';
+import 'package:pwapp/shared/StoreService.dart';
+import 'package:pwapp/store/state/MainState.dart';
+
+import 'LoginPage.dart';
 
 class Login extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text('login'),
-      ),
-      body: Center(child: Column(children:[
-        TextFormField(),
-        TextFormField(),
-        Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: RaisedButton(
-              onPressed: () {
-               
-              },
-              child: Text('Submit'),
-            ),
-          )
-      ])),
-    );
+    return StoreProvider<MainState>(
+        store: getIt<StoreService<MainState>>(), child: LoginPage());
   }
-
 }

@@ -3,7 +3,6 @@ import 'package:pwapp/models/BaseModel.dart';
 import 'package:pwapp/models/LoginModel.dart';
 import 'package:pwapp/models/TokenModel.dart';
 import 'package:pwapp/services/BaseRestService.dart';
-import 'dart:convert' as json;
 
 @singleton
 class AuthService
@@ -22,7 +21,7 @@ class AuthService
   }
 
   @override
-  TokenModel convertFromJson(String body) {
-    return TokenModel.fromJson(json.jsonDecode(body));
+  TokenModel convertFromJson(Map data) {
+    return TokenModel.fromJson(data);
   }
 }

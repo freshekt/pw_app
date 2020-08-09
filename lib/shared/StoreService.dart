@@ -1,9 +1,11 @@
+import 'package:injectable/injectable.dart';
 import 'package:pwapp/shared/Action.dart';
 import 'package:pwapp/shared/Effect.dart';
 import 'package:pwapp/shared/BaseReducer.dart';
 import 'package:pwapp/shared/Selector.dart';
 import 'package:redux/redux.dart';
 
+@singleton
 class StoreService<TState> implements Store<TState> {
   @override
   var reducer;

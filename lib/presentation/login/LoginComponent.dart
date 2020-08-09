@@ -7,10 +7,17 @@ import 'package:pwapp/store/state/MainState.dart';
 
 class LoginComponent extends Component<MainState, AuthState> {
   LoginComponent()
-      : super(view: (AuthState state, dynamic dispatch) {
+      : super(view: (AuthState state, dynamic dispatch, BuildContext context) {
           final _formKey = GlobalKey<FormState>();
           final usernamectr = TextEditingController();
           final passwordctr = TextEditingController();
+
+          if (state.isAutharized) {
+            Future.delayed(Duration.zero, () {
+              Navigator.of(context).pop();
+            });
+          }
+
           return Form(
               key: _formKey,
               child: Column(children: [

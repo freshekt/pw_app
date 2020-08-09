@@ -5,12 +5,12 @@ import 'package:redux/redux.dart';
 
 import 'Action.dart';
 
-class Effect<T> {
+class Effect {
   final Map<dynamic, List<Function>> handles;
 
   Effect(this.handles);
 
-  void call(Action action, Store<T> store) {
+  void call(Action action, Store store) {
     if (handles.containsKey(action.type))
       handles[action.type].forEach((fx) async => await fx.call(action, store));
   }
@@ -18,10 +18,12 @@ class Effect<T> {
 
 Effect combineEffects(List<Effect> effects) {
   Map<dynamic, List<Function>> handles = Map();
-  effects.map((e) => e.handles.keys).toSet().toList().forEach((key) {
-    effects.where((e) => e.handles.containsKey(key)).forEach((eff) {
-      handles[key] = [...?handles[key], ...eff.handles[key]];
-    });
+
+  effects.map((e) => e.handles).forEach((h) {
+    h.entries.forEach((item) => {
+          handles[item.key] = [...item.value, ...?handles[item.key]]
+        });
   });
+
   return Effect(handles);
 }

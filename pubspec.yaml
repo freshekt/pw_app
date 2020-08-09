@@ -23,6 +23,7 @@ environment:
 dependencies:
   injectable: ^1.0.0
   flutter_redux: ^0.6.0
+  flutter_typeahead: ^1.8.7
   redux: ^4.0.0+3
   rxdart: ^0.24.1
   get_it: ^4.0.2

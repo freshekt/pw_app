@@ -1,5 +1,5 @@
+import 'package:flutter_redux_effects/Action.dart';
 import 'package:pwapp/models/TransactrionModel.dart';
-import 'package:pwapp/shared/Action.dart';
 
 enum TransactionAction { NEW, FETCH, RECIVED, RECIVED_LIST }
 

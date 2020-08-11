@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux_effects/Component.dart';
 import 'package:pwapp/models/LoginModel.dart';
-import 'package:pwapp/shared/Component.dart';
 import 'package:pwapp/store/actions/AuthActions.dart';
 import 'package:pwapp/store/state/AuthState.dart';
 import 'package:pwapp/store/state/MainState.dart';

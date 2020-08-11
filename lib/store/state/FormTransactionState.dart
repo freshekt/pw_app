@@ -1,5 +1,4 @@
 import 'package:pwapp/models/WailetModel.dart';
-import 'package:pwapp/store/state/BaseState.dart';
 
 import 'AuthState.dart';
 

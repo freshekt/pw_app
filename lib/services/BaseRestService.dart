@@ -9,7 +9,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 abstract class BaseRestService<T extends BaseModel, TADD extends BaseModel,
     TUPDATE extends BaseModel, TDELETE extends BaseModel> {
   final String url;
-  Map<String, String> headers = {};
+  Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  };
 
   BaseRestService({this.url});
 
@@ -25,7 +28,8 @@ abstract class BaseRestService<T extends BaseModel, TADD extends BaseModel,
   Future<T> create(TADD data, {String urlPostfix = ""}) async {
     var uri = Uri.parse(url + urlPostfix);
     await prepareHeaders();
-    var response = await http.post(uri, body: data.toJson(), headers: headers);
+    var response = await http.post(uri,
+        body: json.jsonEncode(data.toJson()), headers: headers);
     if (response.statusCode < 399) {
       return convertFromJson(json.jsonDecode(response.body));
     } else
@@ -36,7 +40,7 @@ abstract class BaseRestService<T extends BaseModel, TADD extends BaseModel,
     await prepareHeaders();
     var response =
         await http.put(url + urlPostfix, body: data.toJson(), headers: headers);
-    if (response.statusCode < 400) {
+    if (response.statusCode < 399) {
       return convertFromJson(json.jsonDecode(response.body));
     } else
       throw Exception(response);

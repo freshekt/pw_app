@@ -1,12 +1,11 @@
+import 'package:flutter_redux_effects/Effect.dart';
+import 'package:flutter_redux_effects/StoreService.dart';
 import 'package:get_it/get_it.dart';
-import 'package:injectable/get_it_helper.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pwapp/services/AuthService.dart';
 import 'package:pwapp/services/TransactionService.dart';
 import 'package:pwapp/services/UserService.dart';
 import 'package:pwapp/services/WailetsService.dart';
-import 'package:pwapp/shared/Effect.dart';
-import 'package:pwapp/shared/StoreService.dart';
 import 'package:pwapp/store/effects/AuthEffects.dart';
 import 'package:pwapp/store/effects/TransactionEffect.dart';
 import 'package:pwapp/store/effects/WailetEffects.dart';
@@ -70,10 +69,4 @@ $initGetIt(GetIt g, {String environment}) async {
   } catch (ex) {
     print(ex);
   }
-}
-
-@module
-class RegisterModule {
-  @preResolve
-  Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 }

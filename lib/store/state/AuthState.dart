@@ -1,8 +1,5 @@
-import 'package:pwapp/config/di-module.dart';
+import 'package:flutter_redux_effects/BaseState.dart';
 import 'package:pwapp/models/TokenModel.dart';
-import 'package:pwapp/store/state/BaseState.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert' as json;
 
 class AuthState extends BaseState<AuthState> {
   bool get isAutharized => token != null;

@@ -29,6 +29,9 @@ dependencies:
   get_it: ^4.0.2
   shared_preferences: ^0.5.7+3
   http: ^0.12.1
+  flutter_redux_effects: 
+    git:
+      url: git://github.com/freshekt/flutter_redux_effects.git
   flutter:
     sdk: flutter
 

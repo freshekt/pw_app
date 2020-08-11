@@ -1,5 +1,5 @@
+import 'package:flutter_redux_effects/BaseState.dart';
 import 'package:pwapp/models/WailetModel.dart';
-import 'package:pwapp/store/state/BaseState.dart';
 
 class WailetsSate extends BaseState<WailetsSate> {
   List<WailetModel> wailets;

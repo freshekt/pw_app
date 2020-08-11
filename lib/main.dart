@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_redux_effects/StoreService.dart';
 import 'package:pwapp/presentation/login/LoginPage.dart';
 import 'package:pwapp/presentation/main/MainPage.dart';
-import 'package:pwapp/shared/StoreService.dart';
 import 'package:pwapp/store/state/MainState.dart';
 
 import 'config/di-module.dart';

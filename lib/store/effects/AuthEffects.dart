@@ -1,17 +1,16 @@
 import 'dart:async';
 
+import 'package:flutter_redux_effects/Action.dart';
+import 'package:flutter_redux_effects/BaseEffect.dart';
+import 'package:flutter_redux_effects/Effect.dart';
 import 'package:pwapp/config/di-module.dart';
 import 'package:pwapp/models/TokenModel.dart';
 import 'package:pwapp/services/AuthService.dart';
-import 'package:pwapp/shared/Action.dart';
-import 'package:pwapp/shared/Effect.dart';
 import 'package:pwapp/store/actions/AuthActions.dart';
 import 'package:pwapp/store/state/MainState.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert' as json;
-
-import 'BaseEffect.dart';
 
 class AuthEffects extends BaseEffect {
   FutureOr<void> signInEffectHndler(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux_effects/Component.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:pwapp/config/di-module.dart';
 import 'package:pwapp/models/TransactrionModel.dart';
 import 'package:pwapp/models/UserModel.dart';
 import 'package:pwapp/models/WailetModel.dart';
 import 'package:pwapp/services/UserService.dart';
-import 'package:pwapp/shared/Component.dart';
 import 'package:pwapp/store/actions/TransactionActions.dart';
 import 'package:pwapp/store/actions/WailetActions.dart';
 import 'package:pwapp/store/state/FormTransactionState.dart';
@@ -19,20 +19,21 @@ class CreateTransactionComponent
   static var usernamectr = TextEditingController();
   static var amountctr = TextEditingController();
 
-  CreateTransactionComponent() : super(view: getView) {}
+  CreateTransactionComponent() : super(view: getView, onInitComponent: init) {}
+
+  static init(FromTransactionState state, store) {
+    if (state.mywailets.isEmpty) store.dispatch(WailetActions.fetchMain());
+  }
 
   static Widget getView(FromTransactionState state, dynamic dispatch, context) {
-    if ((state.mywailets.isEmpty ||
-            !state.mywailets.any((s) => s.userId == state.token.userId)) &&
-        !state.isInProcess) dispatch(WailetActions.fetchMain());
-
-    WailetModel from = state.wailets
-        .firstWhere((w) => w.userId == state.token.userId, orElse: () => null);
+    WailetModel from = state.mywailets.first;
 
     WailetModel to = state.wailets.firstWhere(
         (w) => selectedUser != null && w.userId == selectedUser.id,
         orElse: () => null);
-    if (to != null) usernamectr.text = "${selectedUser.username} - ${to.name}";
+
+    if (to != null && !usernamectr.text.startsWith(selectedUser.username))
+      usernamectr.text = "${selectedUser.username} - ${to.name}";
 
     return Form(
         key: _formKey,
@@ -52,14 +53,17 @@ class CreateTransactionComponent
               );
             },
             onSuggestionSelected: (user) {
-              usernamectr.text = user.username;
               selectedUser = user;
               dispatch(WailetActions.fetch(user));
             },
-            suggestionsCallback: (String pattern) {
-              return pattern.isNotEmpty
-                  ? userService.search(pattern)
-                  : Future.value([]);
+            suggestionsCallback: (String pattern) async {
+              if (pattern.isEmpty) {
+                selectedUser = null;
+                to = null;
+                return [];
+              } else
+                return (await userService.search(pattern))
+                    .where((u) => u.id != state.token.userId);
             },
           )),
           ListTile(

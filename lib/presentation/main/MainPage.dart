@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux_effects/StoreService.dart';
 import 'package:pwapp/config/di-module.dart';
 import 'package:pwapp/presentation/login/LoginPage.dart';
 import 'package:pwapp/presentation/transactions/CreateTransactionPage.dart';
 import 'package:pwapp/presentation/transactions/TransactionsComponent.dart';
-import 'package:pwapp/shared/StoreService.dart';
 import 'package:pwapp/store/state/MainState.dart';
 
 class MainPage extends StatelessWidget {

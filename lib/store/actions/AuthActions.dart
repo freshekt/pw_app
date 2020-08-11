@@ -1,6 +1,6 @@
+import 'package:flutter_redux_effects/Action.dart';
 import 'package:pwapp/models/LoginModel.dart';
 import 'package:pwapp/models/TokenModel.dart';
-import 'package:pwapp/shared/Action.dart';
 
 enum AuthAction { SIGN_IN, SIGN_OUT, SET_AUTH_DATA }
 

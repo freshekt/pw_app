@@ -1,6 +1,6 @@
+import 'package:flutter_redux_effects/Action.dart';
 import 'package:pwapp/models/UserModel.dart';
 import 'package:pwapp/models/WailetModel.dart';
-import 'package:pwapp/shared/Action.dart';
 
 enum WailetAction { FETCH, RECIVED, FETCH_MAIN, RECIVED_MAIN }
 
@@ -10,5 +10,5 @@ class WailetActions {
       Action(WailetAction.RECIVED, payload: wailets);
   static fetchMain() => Action(WailetAction.FETCH_MAIN);
   static recivedMain(List<WailetModel> wailets) =>
-      Action(WailetAction.RECIVED, payload: wailets);
+      Action(WailetAction.RECIVED_MAIN, payload: wailets);
 }

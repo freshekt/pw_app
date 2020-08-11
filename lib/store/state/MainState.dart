@@ -1,5 +1,5 @@
+import 'package:flutter_redux_effects/BaseState.dart';
 import 'package:pwapp/store/state/AuthState.dart';
-import 'package:pwapp/store/state/BaseState.dart';
 import 'package:pwapp/store/state/TransactionState.dart';
 import 'package:pwapp/store/state/WailetsState.dart';
 

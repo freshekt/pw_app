@@ -1,6 +1,5 @@
+import 'package:flutter_redux_effects/BaseState.dart';
 import 'package:pwapp/models/TransactrionModel.dart';
-
-import 'BaseState.dart';
 
 class TransactionState extends BaseState<TransactionState> {
   List<TransactionModel> transactions = [];

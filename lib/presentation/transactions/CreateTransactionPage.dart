@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_redux_effects/StoreService.dart';
 import 'package:pwapp/config/di-module.dart';
-import 'package:pwapp/shared/StoreService.dart';
 import 'package:pwapp/store/state/MainState.dart';
 import 'CreateTransactionComponent.dart';
 

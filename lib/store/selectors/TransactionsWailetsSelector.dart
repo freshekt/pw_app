@@ -1,4 +1,4 @@
-import 'package:pwapp/shared/Selector.dart';
+import 'package:flutter_redux_effects/Selector.dart';
 import 'package:pwapp/store/state/MainState.dart';
 import 'package:pwapp/store/state/TransactionWailetsState.dart';
 

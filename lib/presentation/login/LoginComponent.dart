@@ -38,7 +38,7 @@ class LoginComponent extends Component<MainState, AuthState> {
                         password: passwordctr.text))),
                     child: Text('Submit'),
                   ),
-                )
+                ),
               ]));
         });
 }

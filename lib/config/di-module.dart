@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:pwapp/services/AuthService.dart';
 import 'package:pwapp/services/TransactionService.dart';
 import 'package:pwapp/services/UserService.dart';
+import 'package:pwapp/services/WSService.dart';
 import 'package:pwapp/services/WailetsService.dart';
 import 'package:pwapp/store/effects/AuthEffects.dart';
 import 'package:pwapp/store/effects/TransactionEffect.dart';
@@ -42,6 +43,8 @@ $initGetIt(GetIt g, {String environment}) async {
     gh.singleton<UserService>(UserService("http://192.168.1.65:3000"));
 
     gh.singleton<WailetsService>(WailetsService("http://192.168.1.65:3000"));
+
+    gh.singleton<WSService>(WSService("http://192.168.1.65:3000"));
 
     gh.singleton<TransactionsService>(
         TransactionsService("http://192.168.1.65:3000"));

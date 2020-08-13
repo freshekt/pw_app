@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux_effects/StoreService.dart';
 import 'package:pwapp/config/di-module.dart';
 import 'package:pwapp/presentation/login/LoginPage.dart';
+import 'package:pwapp/presentation/main/BarComponent.dart';
 import 'package:pwapp/presentation/transactions/CreateTransactionPage.dart';
 import 'package:pwapp/presentation/transactions/TransactionsComponent.dart';
 import 'package:pwapp/store/state/MainState.dart';
@@ -25,7 +26,7 @@ class MainPage extends StatelessWidget {
       });
     return Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: BarComponent(title),
         ),
         body: TransactionComponent(),
         floatingActionButton: FloatingActionButton(

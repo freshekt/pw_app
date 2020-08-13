@@ -16,13 +16,28 @@ class TransactionReducer extends BaseReducer<TransactionState> {
     if (action.type == TransactionAction.RECIVED) {
       return state.clone()
         ..isInProcess = false
-        ..transactions = [action.payload, ...state.transactions];
+        ..transactions = [...state.transactions, action.payload];
     }
 
     if (action.type == TransactionAction.RECIVED_LIST) {
       return state.clone()
         ..isInProcess = false
         ..transactions = action.payload;
+    }
+
+    if (action.type == TransactionAction.TRANSACTION_UPDATE) {
+      var index =
+          state.transactions.indexWhere((t) => t.id == action.payload.id);
+      var transactions = state.transactions;
+      if (index > -1) {
+        transactions[index] = action.payload;
+      } else {
+        transactions = [...transactions, action.payload];
+      }
+
+      return state.clone()
+        ..isInProcess = false
+        ..transactions = transactions;
     }
 
     return state;

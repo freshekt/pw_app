@@ -9,6 +9,7 @@ class AuthReducer extends BaseReducer<AuthState> {
     if (action.type == AuthAction.SET_AUTH_DATA) {
       return state.clone()
         ..token = action.payload
+        ..error = null
         ..isInProcess = false;
     }
 
@@ -16,6 +17,13 @@ class AuthReducer extends BaseReducer<AuthState> {
         action.type == AuthAction.SIGN_OUT) {
       return state.clone()
         ..token = null
+        ..isInProcess = true;
+    }
+
+    if (action.type == AuthAction.SIGN_IN_FAILED) {
+      return state.clone()
+        ..token = null
+        ..error = action.payload
         ..isInProcess = true;
     }
 

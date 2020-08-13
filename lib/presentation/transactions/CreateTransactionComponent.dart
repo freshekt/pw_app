@@ -15,9 +15,6 @@ class CreateTransactionComponent
     extends Component<MainState, FromTransactionState> {
   static UserModel selectedUser;
   static UserService userService = getIt<UserService>();
-  static var _formKey = GlobalKey<FormState>();
-  static var usernamectr = TextEditingController();
-  static var amountctr = TextEditingController();
 
   CreateTransactionComponent() : super(view: getView, onInitComponent: init) {}
 
@@ -26,7 +23,11 @@ class CreateTransactionComponent
   }
 
   static Widget getView(FromTransactionState state, dynamic dispatch, context) {
-    WailetModel from = state.mywailets.first;
+    final usernamectr = TextEditingController();
+    final amountctr = TextEditingController();
+    final _formKey = GlobalKey<FormState>();
+    WailetModel from =
+        state.mywailets.isNotEmpty ? state.mywailets.first : null;
 
     WailetModel to = state.wailets.firstWhere(
         (w) => selectedUser != null && w.userId == selectedUser.id,
@@ -81,6 +82,8 @@ class CreateTransactionComponent
                       toWailetId: to.id,
                       status: TransactionModel.NEW,
                       amount: double.parse(amountctr.text))));
+                  selectedUser = null;
+                  to = null;
                   Navigator.of(context).pop();
                 }
               },

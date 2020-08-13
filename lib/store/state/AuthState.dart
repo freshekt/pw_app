@@ -9,6 +9,7 @@ class AuthState extends BaseState<AuthState> {
   AuthState clone() {
     return AuthState()
       ..token = token
+      ..error = error
       ..isInProcess = isInProcess;
   }
 
@@ -17,6 +18,8 @@ class AuthState extends BaseState<AuthState> {
     // var token = tokenStr != null && tokenStr.isNotEmpty
     //     ? TokenModel.fromJson(json.jsonDecode(tokenStr))
     //     : null;
-    return AuthState()..token = null;
+    return AuthState()
+      ..token = null
+      ..error = null;
   }
 }

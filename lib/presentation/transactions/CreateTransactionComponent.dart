@@ -77,9 +77,13 @@ class CreateTransactionComponent
             child: RaisedButton(
               onPressed: () {
                 if (from != null && to != null) {
+                  UserModel user = UserModel.fromToken(state.token.accessToken);
                   dispatch(TransactionActions.create(TransactionModel(
                       fromWailetId: from.id,
                       toWailetId: to.id,
+                      correspondentName: user.username,
+                      fromBalance: 0,
+                      toBalance: 0,
                       status: TransactionModel.NEW,
                       amount: double.parse(amountctr.text))));
                   selectedUser = null;

@@ -10,18 +10,33 @@ class TransactionModel extends BaseModel {
   final double amount;
   final int fromWailetId;
   final int toWailetId;
+  final DateTime date;
+  final String correspondentName;
+  final double fromBalance;
+  final double toBalance;
 
   TransactionModel(
-      {this.id, this.status, this.amount, this.fromWailetId, this.toWailetId});
+      {this.id,
+      this.status,
+      this.amount,
+      this.fromWailetId,
+      this.toWailetId,
+      this.date,
+      this.correspondentName,
+      this.fromBalance,
+      this.toBalance});
 
   factory TransactionModel.fromJson(Map<String, dynamic> json) {
     return TransactionModel(
-      id: json['id'],
-      status: json['status'],
-      amount: double.parse(json['amount'].toString()),
-      fromWailetId: json['fromWailetId'],
-      toWailetId: json['toWailetId'],
-    );
+        id: json['id'],
+        status: json['status'],
+        amount: double.parse(json['amount'].toString()),
+        fromWailetId: json['fromWailetId'],
+        toWailetId: json['toWailetId'],
+        date: DateTime.parse(json['date']),
+        correspondentName: json['correspondentName'],
+        fromBalance: double.parse(json['fromBalance'].toString()),
+        toBalance: double.parse(json['toBalance'].toString()));
   }
 
   @override
@@ -32,6 +47,10 @@ class TransactionModel extends BaseModel {
       'amount': amount,
       'fromWailetId': fromWailetId,
       'toWailetId': toWailetId,
+      'date': date,
+      'correspondentName': correspondentName,
+      'fromBalance': fromBalance,
+      'toBalance': toBalance
     };
   }
 }

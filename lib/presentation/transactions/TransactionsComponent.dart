@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux_effects/Component.dart';
 import 'package:pwapp/store/actions/TransactionActions.dart';
@@ -40,11 +40,15 @@ class TransactionComponent
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(e.amount.toString()),
-                      Text(e.status.toString()),
+                      Text(DateFormat('dd/MM – kk:mm').format(e.date)),
+                      Text(e.correspondentName.toString()),
+                      Text((state.mywailets.any((w) => w.id == e.fromWailetId)
+                              ? "-"
+                              : "+") +
+                          e.amount.toString()),
                       Text(state.mywailets.any((w) => w.id == e.fromWailetId)
-                          ? 'OUT'
-                          : 'IN'),
+                          ? e.fromBalance.toStringAsFixed(2)
+                          : e.toBalance.toStringAsFixed(2)),
                     ],
                   ));
             }));

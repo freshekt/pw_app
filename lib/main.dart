@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_effects/StoreService.dart';
 import 'package:pwapp/presentation/login/LoginPage.dart';
 import 'package:pwapp/presentation/main/MainPage.dart';
+import 'package:pwapp/presentation/registration/RegistrationPage.dart';
 import 'package:pwapp/store/state/MainState.dart';
 
 import 'config/di-module.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
           home: MainPage(title: 'Parrot Wings'),
           routes: {
             MainPage.routeName: (context) => MainPage(title: 'Parrot Wings'),
-            LoginPage.routeName: (context) => LoginPage()
+            LoginPage.routeName: (context) => LoginPage(),
+            RegistrationPage.routeName: (context) => RegistrationPage()
           },
         ));
   }

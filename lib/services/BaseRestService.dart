@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:pwapp/config/di-module.dart';
 import 'package:pwapp/models/BaseModel.dart';
+import 'package:pwapp/models/ErrorModel.dart';
 import 'package:pwapp/models/TokenModel.dart';
 import 'dart:convert' as json;
 
@@ -33,7 +34,8 @@ abstract class BaseRestService<T extends BaseModel, TADD extends BaseModel,
     if (response.statusCode < 399) {
       return convertFromJson(json.jsonDecode(response.body));
     } else
-      throw Exception(response);
+      throw Exception(
+          ErrorModel.fromJson(json.jsonDecode(response.body)).message);
   }
 
   Future<T> update(TUPDATE data, {String urlPostfix = ""}) async {
@@ -43,14 +45,16 @@ abstract class BaseRestService<T extends BaseModel, TADD extends BaseModel,
     if (response.statusCode < 399) {
       return convertFromJson(json.jsonDecode(response.body));
     } else
-      throw Exception(response);
+      throw Exception(
+          ErrorModel.fromJson(json.jsonDecode(response.body)).message);
   }
 
   Future delete(TDELETE data, {String urlPostfix = ""}) async {
     prepareHeaders();
     var response = await http.delete(url + urlPostfix, headers: headers);
     if (response.statusCode < 400) {
-      throw Exception(response);
+      throw Exception(
+          ErrorModel.fromJson(json.jsonDecode(response.body)).message);
     }
   }
 
@@ -61,7 +65,8 @@ abstract class BaseRestService<T extends BaseModel, TADD extends BaseModel,
     if (response.statusCode == 200) {
       return convertFromJson(json.jsonDecode(response.body));
     } else
-      throw Exception(response);
+      throw Exception(
+          ErrorModel.fromJson(json.jsonDecode(response.body)).message);
   }
 
   List<T> convertAllFromJson(List l) {
@@ -76,7 +81,8 @@ abstract class BaseRestService<T extends BaseModel, TADD extends BaseModel,
     if (response.statusCode < 400) {
       return convertAllFromJson(json.jsonDecode(response.body));
     } else
-      throw Exception(response);
+      throw Exception(
+          ErrorModel.fromJson(json.jsonDecode(response.body)).message);
   }
 
   Future<List<T>> findAll({String urlPostfix = "", Map params = null}) async {
@@ -91,6 +97,7 @@ abstract class BaseRestService<T extends BaseModel, TADD extends BaseModel,
     if (response.statusCode < 400) {
       return convertAllFromJson(json.jsonDecode(response.body));
     } else
-      throw Exception(response);
+      throw Exception(
+          ErrorModel.fromJson(json.jsonDecode(response.body)).message);
   }
 }

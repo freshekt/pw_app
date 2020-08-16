@@ -13,7 +13,9 @@ class BarComponent extends Component<MainState, FromTransactionState> {
               ? UserModel.fromToken(state.token.accessToken)
               : null;
           final username = user != null ? user.username : "";
-          final balance = state.mywailets.first.balance.toStringAsFixed(2);
+          final balance = state.mywailets.isNotEmpty
+              ? state.mywailets.first.balance.toStringAsFixed(2)
+              : 0;
           return Text(state.mywailets.isEmpty
               ? title
               : "$title :  $username - $balance");

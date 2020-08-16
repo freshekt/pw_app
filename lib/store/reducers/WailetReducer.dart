@@ -36,7 +36,7 @@ class WailetReducer extends BaseReducer<WailetsSate> {
 
     if (action.type == WailetAction.WAILET_UPDATE) {
       var index = state.mywailets.indexWhere((w) => w.id == action.payload.id);
-      var wailets = state.wailets;
+      var wailets = state.mywailets;
       wailets[index] = action.payload;
       return state.clone()
         ..wailets = wailets

@@ -28,29 +28,39 @@ class TransactionComponent
 
   static Widget getView(
       TransactionWailetsState state, dynamic dispatch, context) {
-    return Center(
-        child: ListView.builder(
-            itemCount: state.transactions.length,
-            itemBuilder: (BuildContext context, int index) {
-              var e = state.transactions.elementAt(index);
-              return Container(
-                  margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  color:
-                      (index % 2 == 0) ? Colors.white : Colors.lightBlueAccent,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(DateFormat('dd/MM – kk:mm').format(e.date)),
-                      Text(e.correspondentName.toString()),
-                      Text((state.mywailets.any((w) => w.id == e.fromWailetId)
-                              ? "-"
-                              : "+") +
-                          e.amount.toString()),
-                      Text(state.mywailets.any((w) => w.id == e.fromWailetId)
-                          ? e.fromBalance.toStringAsFixed(2)
-                          : e.toBalance.toStringAsFixed(2)),
-                    ],
-                  ));
-            }));
+    return RefreshIndicator(
+        child: Center(
+            child: ListView.builder(
+                itemCount: state.transactions.length,
+                itemBuilder: (BuildContext context, int index) {
+                  var e = state.transactions.elementAt(index);
+                  return Container(
+                      margin: const EdgeInsets.only(left: 10.0, right: 10.0),
+                      color: (index % 2 == 0)
+                          ? Colors.white
+                          : Colors.lightBlueAccent,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(DateFormat('dd/MM – kk:mm').format(e.date)),
+                          Text(e.correspondentName.toString()),
+                          Text(e.status),
+                          Text((state.mywailets
+                                      .any((w) => w.id == e.fromWailetId)
+                                  ? "-"
+                                  : "+") +
+                              e.amount.toString()),
+                          Text(
+                              state.mywailets.any((w) => w.id == e.fromWailetId)
+                                  ? e.fromBalance.toStringAsFixed(2)
+                                  : e.toBalance.toStringAsFixed(2)),
+                        ],
+                      ));
+                })),
+        onRefresh: () {
+          return Future.delayed(Duration.zero, () {
+            dispatch(TransactionActions.getAll());
+          });
+        });
   }
 }
